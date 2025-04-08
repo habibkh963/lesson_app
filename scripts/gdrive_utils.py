@@ -42,30 +42,30 @@ def upload_file(service, file_path, custom_name, drive_folder_id="1-8sPcsV0e00ql
     return file.get('webViewLink')
 
 
-def send_email(apk_drive_link):
-    sender_email = os.environ.get("EMAIL_USERNAME")
-    sender_password = os.environ.get("EMAIL_PASSWORD")
-    recipient_email = "loxor57@gmail.com"  # Change this to the actual recipient
+# def send_email(apk_drive_link):
+#     sender_email = os.environ.get("EMAIL_USERNAME")
+#     sender_password = os.environ.get("EMAIL_PASSWORD")
+#     recipient_email = "loxor57@gmail.com"  # Change this to the actual recipient
 
-    if not sender_email or not sender_password:
-        raise Exception("Email credentials not set in environment variables")
+#     if not sender_email or not sender_password:
+#         raise Exception("Email credentials not set in environment variables")
 
-    subject = "New APK Build Available"
-    body = f"Hello,\n\nA new LessonsApp APK build has been uploaded. You can download it from the link below:\n{apk_drive_link}\n\nBest Regards,\nCI/CD Pipeline"
+#     subject = "New APK Build Available"
+#     body = f"Hello,\n\nA new LessonsApp APK build has been uploaded. You can download it from the link below:\n{apk_drive_link}\n\nBest Regards,\nCI/CD Pipeline"
 
-    msg = MIMEMultipart()
-    msg["From"] = sender_email
-    msg["To"] = recipient_email
-    msg["Subject"] = subject
-    msg.attach(MIMEText(body, "plain"))
+#     msg = MIMEMultipart()
+#     msg["From"] = sender_email
+#     msg["To"] = recipient_email
+#     msg["Subject"] = subject
+#     msg.attach(MIMEText(body, "plain"))
 
-    try:
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
-            server.login(sender_email, sender_password)
-            server.sendmail(sender_email, recipient_email, msg.as_string())
-        print("Email sent successfully")
-    except Exception as e:
-        print(f"Failed to send email: {e}")
+#     try:
+#         with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+#             server.login(sender_email, sender_password)
+#             server.sendmail(sender_email, recipient_email, msg.as_string())
+#         print("Email sent successfully")
+#     except Exception as e:
+#         print(f"Failed to send email: {e}")
 
 
 def sanitize_filename(filename):
@@ -80,4 +80,4 @@ if __name__ == '__main__':
     gdrive_service = authenticate_gdrive()
     apk_drive_link = upload_file(gdrive_service, apk_path, apk_name)
 
-    send_email(apk_drive_link)
+    # send_email(apk_drive_link)
