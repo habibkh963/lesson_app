@@ -1,0 +1,95 @@
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:lessonsapp/Features/VideoScreen/views/VideoScreen.dart';
+
+import 'Features/Home/Views/HomeScreen.dart';
+import 'Features/auth/Views/Login.dart';
+
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Get.theme.brightness,
+    ),
+  );
+  runApp(
+    DevicePreview(
+      enabled: !kReleaseMode,
+
+      builder: (context) => MyApp(), // Wrap your app
+    ),
+  );
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return ScreenUtilInit(
+      designSize: const Size(360, 800),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) {
+        return GetMaterialApp(
+          useInheritedMediaQuery: true,
+
+          debugShowCheckedModeBanner: false,
+
+          fallbackLocale: Locale('en', ''),
+          locale: Locale('en'),
+
+          // translations: Messages(),
+          getPages: [
+            GetPage(
+              name: LoginPage.ROUTE_NAME,
+
+              page: () => LoginPage(),
+
+              arguments: Get.arguments,
+              transition: Transition.leftToRight,
+              transitionDuration: const Duration(milliseconds: 400),
+              curve: Curves.easeOutQuad,
+            ),
+            GetPage(
+              name: HomeScreen.ROUTE_NAME,
+              page: () => HomeScreen(),
+
+              arguments: Get.arguments,
+              transition: Transition.leftToRight,
+              transitionDuration: const Duration(milliseconds: 400),
+              curve: Curves.easeOutQuad,
+            ),
+            GetPage(
+              name: VideoScreen.ROUTE_NAME,
+
+              page: () => VideoScreen(),
+
+              arguments: Get.arguments,
+              transition: Transition.leftToRight,
+              transitionDuration: const Duration(milliseconds: 400),
+              curve: Curves.easeOutQuad,
+            ),
+          ],
+          title: 'Lessons Daily',
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            useMaterial3: true,
+          ),
+          initialRoute: LoginPage.ROUTE_NAME,
+        );
+      },
+    );
+  }
+}

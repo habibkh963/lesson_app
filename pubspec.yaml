@@ -1,0 +1,73 @@
+name: lessonsapp
+description: "A new Flutter project."
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.7.2
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  cupertino_icons: ^1.0.8
+  get:
+  video_player:
+  flutter_svg:
+  flutter_screenutil:
+  device_preview:
+
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+  flutter_lints: ^5.0.0
+  flutter_native_splash:
+  flutter_launcher_icons:
+
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: assets/AppLogo.png
+  adaptive_icon_background: "assets/AppLogo.png"
+  adaptive_icon_foreground: "assets/AppLogo.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  web:
+    generate: true
+    image_path: assets/AppLogo.png
+    background_color: "#FF2162F0"
+    theme_color: "#FF2162F0 "
+  windows:
+    generate: true
+    image_path: assets/AppLogo.png
+    icon_size: 100
+
+
+flutter_native_splash: 
+ color: "#FFFFFF" 
+ android: true  
+ android_gravity : center_horizontal
+
+# The following section is specific to Flutter packages.
+flutter:
+
+
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/
+    - assets/photos/
+
+
+  fonts:
+    - family: Almarai
+      fonts:
+        - asset: assets/fonts/Almarai/Almarai-Regular.ttf
+
+

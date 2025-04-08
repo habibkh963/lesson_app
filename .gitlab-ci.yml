@@ -1,0 +1,33 @@
+image: instrumentisto/flutter:3.29.2
+
+stages:
+  - build
+
+before_script:
+  - apt-get update
+  - apt-get install -y openjdk-17-jdk # Install Java 17 instead of Java 11
+  - export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+  - export PATH=$JAVA_HOME/bin:$PATH
+  - echo "org.gradle.java.home=$JAVA_HOME" >> android/gradle.properties
+  - flutter doctor
+
+build_apk:
+  stage: build
+  script:
+    - flutter clean
+    - flutter pub get
+    - flutter build apk --release
+    - flutter build appbundle --release
+    - apt-get update && apt-get install -y python3-pip
+    - pip3 install --upgrade --break-system-packages google-api-python-client google-auth-httplib2 google-auth-oauthlib requests qrcode pillow email
+    - export GOOGLE_DRIVE_CREDENTIALS="$GOOGLE_DRIVE_CREDENTIALS"
+    - export EMAIL_USERNAME="$EMAIL_USERNAME"
+    - export EMAIL_PASSWORD="$EMAIL_PASSWORD"
+    - python3 scripts/gdrive_utils.py
+
+  artifacts:
+    paths:
+      - build/app/outputs/flutter-apk/app-release.apk
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "buildApp"'
+
