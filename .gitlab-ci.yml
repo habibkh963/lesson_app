@@ -19,7 +19,7 @@ build_apk:
     - flutter build apk --release
     - flutter build appbundle --release
     - apt-get update && apt-get install -y python3-pip
-    - pip3 install --upgrade --break-system-packages google-api-python-client google-auth-httplib2 google-auth-oauthlib requests qrcode pillow email
+    - pip3 install --upgrade --break-system-packages google-api-python-client google-auth-httplib2 google-auth-oauthlib requests qrcode pillow 
     - export GOOGLE_DRIVE_CREDENTIALS="$GOOGLE_DRIVE_CREDENTIALS"
     - export EMAIL_USERNAME="$EMAIL_USERNAME"
     - export EMAIL_PASSWORD="$EMAIL_PASSWORD"
