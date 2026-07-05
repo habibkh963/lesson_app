@@ -1,21 +1,25 @@
 import 'package:device_preview/device_preview.dart';
-import 'package:flutter/foundation.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lessonsapp/Features/VideoScreen/views/VideoScreen.dart';
+import 'package:safe_device/safe_device.dart';
+import 'package:safe_device/safe_device_config.dart';
 
 import 'Features/Home/Views/HomeScreen.dart';
 import 'Features/auth/Views/Login.dart';
+import 'core/util/remote/dio_helper.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  SafeDevice.init(
+    SafeDeviceConfig(
+      mockLocationCheckEnabled: false,
+    ), // disables mock location check on Android
+  );
 
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]);
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -24,7 +28,7 @@ void main() {
   );
   runApp(
     DevicePreview(
-      enabled: !kReleaseMode,
+      enabled: false,
 
       builder: (context) => MyApp(), // Wrap your app
     ),
@@ -42,6 +46,7 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
+        DioHelper.init();
         return GetMaterialApp(
           useInheritedMediaQuery: true,
 

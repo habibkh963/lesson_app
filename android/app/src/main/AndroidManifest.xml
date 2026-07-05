@@ -1,12 +1,58 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-   <uses-permission android:name="android.permission.INTERNET"/>
+      <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
     <application
         android:label="lessonsapp"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon"
         android:hardwareAccelerated="true"
        >
-             <!-- android:taskAffinity="" -->
+        
+        
+        <meta-data
+            android:name="GOOGLE_MAPS_API_KEY"
+            android:value="AIzaSyDUMMYGoogleMapsKey123456789"/>
+
+        <meta-data
+            android:name="FIREBASE_API_KEY"
+            android:value="AIzaSyDummyFirebaseKey987654321"/>
+
+        <meta-data
+            android:name="STRIPE_PUBLISHABLE_KEY"
+            android:value="pk_test_51DummyStripeKey"/>
+
+        <meta-data
+            android:name="SENTRY_DSN"
+            android:value="https://dummy@sentry.io/123456"/>
+
+        <meta-data
+            android:name="API_TOKEN"
+            android:value="token_test_123456789abcdef"/>
+
+        <meta-data
+            android:name="JWT_SECRET"
+            android:value="jwt_secret_test_value"/>
+
+        <meta-data
+            android:name="CLIENT_SECRET"
+            android:value="client_secret_dummy_value"/>
+
+        <meta-data
+            android:name="AWS_ACCESS_KEY_ID"
+            android:value="AKIA123456789TEST"/>
+
+        <meta-data
+            android:name="AWS_SECRET_ACCESS_KEY"
+            android:value="aws_secret_test_value"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

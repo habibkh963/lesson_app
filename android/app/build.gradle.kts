@@ -42,3 +42,9 @@ android {
 flutter {
     source = "../.."
 }
+dependencies {
+    // PDF rendering
+
+    
+
+}

@@ -15,7 +15,7 @@ class Apptheme {
     primaryColor: AppColors.mainColor,
     canvasColor: Colors.white,
     indicatorColor: AppColors.mainColor,
-    cardTheme: CardTheme(
+    cardTheme: CardThemeData(
       surfaceTintColor: Colors.transparent,
       elevation: 1,
       color: Colors.white,
