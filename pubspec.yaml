@@ -18,7 +18,6 @@ dependencies:
   device_preview:
   safe_device:
   shared_preferences:
-  advanced_pdf_viewer:
   dio:
 dev_dependencies:
   flutter_test:

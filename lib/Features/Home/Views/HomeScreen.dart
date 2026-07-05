@@ -1,6 +1,5 @@
 import 'dart:io' show File;
 
-import 'package:advanced_pdf_viewer/advanced_pdf_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,7 +7,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:lessonsapp/Features/Home/Views/Widget/SubjectItemWidget.dart';
 import 'package:lessonsapp/core/constants/AppAssets.dart';
 
-import 'package:path_provider/path_provider.dart';
 import '../../../core/constants/TextStyles.dart';
 import '../../../core/pdf_viewer_controller.dart';
 
@@ -32,19 +30,9 @@ class _HomeScreenState extends State<HomeScreen> {
       DeviceOrientation.landscapeRight,
       DeviceOrientation.portraitDown,
     ]);
-    _loadPdf();
   }
 
   bool _isLoading = true;
-  Future<Uint8List> _loadPdf() async {
-    // Fallback: copy asset manually and use filePath
-    final byteData = await rootBundle.load('assets/1778682681.pdf');
-    final tempDir = await getTemporaryDirectory();
-    final tempFile = File('${tempDir.path}/temp.pdf');
-    await tempFile.writeAsBytes(byteData.buffer.asUint8List());
-
-    return byteData.buffer.asUint8List();
-  }
 
   @override
   Widget build(BuildContext context) {
