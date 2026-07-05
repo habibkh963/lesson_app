@@ -11,7 +11,7 @@ $debugInfoPath = "debug-info-apk/v$version" + "_$timestamp"
 New-Item -ItemType Directory -Force -Path $debugInfoPath | Out-Null
 
 
-flutter build apk --release --obfuscate --split-debug-info=$debugInfoPath
+flutter build apk --release --obfuscate --split-debug-info="debug-info-apk/"
 
 Write-Host "`n Version was Built successfuly $version"
 Write-Host " obfuscation files in: $debugInfoPath"

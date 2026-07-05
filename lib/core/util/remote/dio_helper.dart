@@ -25,6 +25,9 @@ class DioHelper {
       'Content-Type': 'application/json',
       'device_id': 'deviceToken123456456789',
       'Accept-Language': 'ar',
+      'aws-key': awsKey,
+      'x_api_key': x_api_key,
+      'auth_endpoint': auth,
     };
 
     if (kDebugMode) {
