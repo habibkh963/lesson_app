@@ -3,6 +3,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:lessonsapp/Features/VideoScreen/views/VideoScreen.dart';
 import 'package:safe_device/safe_device.dart';
@@ -26,11 +27,22 @@ void main() {
       statusBarIconBrightness: Get.theme.brightness,
     ),
   );
+  _initializeFlutterSecureStorage();
   runApp(
     DevicePreview(
       enabled: false,
 
       builder: (context) => MyApp(), // Wrap your app
+    ),
+  );
+}
+
+late FlutterSecureStorage storage;
+void _initializeFlutterSecureStorage() {
+  storage = FlutterSecureStorage(
+    aOptions: const AndroidOptions(
+      biometricPromptTitle: 'Flutter Secure Storage Example',
+      biometricPromptSubtitle: 'Please unlock to access data.',
     ),
   );
 }

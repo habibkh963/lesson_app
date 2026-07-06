@@ -17,7 +17,7 @@ dependencies:
   flutter_screenutil:
   device_preview:
   safe_device:
-  shared_preferences:
+  flutter_secure_storage:
   dio:
 dev_dependencies:
   flutter_test:

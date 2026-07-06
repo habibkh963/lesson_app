@@ -6,6 +6,7 @@ import 'package:lessonsapp/Features/Home/Views/HomeScreen.dart';
 import 'package:lessonsapp/core/constants/AppAssets.dart';
 import 'package:lessonsapp/core/constants/TextStyles.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../../main.dart';
 import '../../../shared/CustomButton.dart';
 import '../../../shared/CustomTextField.dart';
 import '../../../shared/check_emulator_and_Debugging.dart';
@@ -31,13 +32,12 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future<void> saveToken(String token) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('token', token);
+    await storage.write(key: 'token', value: token);
   }
 
   Future<void> saveValue(String key, String val) async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(key, val);
+    await storage.write(key: key, value: val);
   }
 
   @override
