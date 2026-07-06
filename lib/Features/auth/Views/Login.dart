@@ -26,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
     super.initState();
     saveToken('verySecretTokenPassIs12345678');
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      // SecurityCheck.check(Get.context!);
+      SecurityCheck.check(Get.context!);
     });
   }
 
