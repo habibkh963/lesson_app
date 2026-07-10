@@ -1,11 +1,1 @@
-const apiKey = "AIzaSyDummyFirebaseKey123";
-const x_api_key = 'cccceeewwwaaaawwwwwxfffffafasfsffbfbggb';
-const bearerToken = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9";
-const jwtSecret = "super_secret_jwt_key";
-const password = "12345678";
-const clientSecret = "oauth_client_secret";
-const awsKey = "AKIA_TEST_KEY";
-const baseUrl = "https://sec_dash_test.com/";
-const auth = "auth/";
-const subjects = "subjects/";
-const videos = "videos/";
+

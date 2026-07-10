@@ -11,9 +11,11 @@ import 'package:safe_device/safe_device_config.dart';
 
 import 'Features/Home/Views/HomeScreen.dart';
 import 'Features/auth/Views/Login.dart';
+import 'core/app_config.dart';
 import 'core/util/remote/dio_helper.dart';
+import 'core/util/secret_vault.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SafeDevice.init(
     SafeDeviceConfig(
@@ -28,6 +30,7 @@ void main() {
     ),
   );
   _initializeFlutterSecureStorage();
+  await _initializeSecrets();
   runApp(
     DevicePreview(
       enabled: false,
@@ -35,6 +38,27 @@ void main() {
       builder: (context) => MyApp(), // Wrap your app
     ),
   );
+}
+
+Future<void> _initializeSecrets() async {
+  try {
+    // 1. Fetch values via MethodChannel sequentially
+    final apiTask = await SecureVault.fetchSecret("apiKey");
+    final xApiTask = await SecureVault.fetchSecret("xApiKey");
+    final urlTask = await SecureVault.fetchSecret("baseUrl");
+    final passTask = await SecureVault.fetchSecret("pass");
+    // 2. Assign values to our global in-memory config container
+    AppConfig.apiKey = apiTask ?? 'fallback_api_key';
+    AppConfig.xApiKey = xApiTask ?? 'fallback_x_api_key';
+    AppConfig.baseUrl = urlTask ?? 'https://fallback.com/';
+    AppConfig.pass = passTask ?? 'ha ha ';
+    AppConfig.isInitialized = true;
+    debugPrint("Native secrets initialized smoothly in dynamic RAM.");
+  } catch (e) {
+    debugPrint(
+      "Critical Error initializing application environment configurations: $e",
+    );
+  }
 }
 
 late FlutterSecureStorage storage;

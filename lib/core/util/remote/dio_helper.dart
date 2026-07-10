@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
-import '../../../shared/constatnts.dart';
+import '../../app_config.dart';
 
 class DioHelper {
   static late Dio dio;
@@ -17,17 +17,16 @@ class DioHelper {
   }) {
     // appContext = context;
 
-    dio = Dio(BaseOptions(baseUrl: "${baseUrl}/"));
+    dio = Dio(BaseOptions(baseUrl: "${AppConfig.baseUrl}/"));
     // String? locale = CacheHelper.getData(key: 'locale');
 
     dio.options.headers = {
-      'Authorization': "Bearer ${jwtSecret}",
+      'Authorization': "Bearer ${AppConfig.xApiKey}",
       'Content-Type': 'application/json',
-      'device_id': 'deviceToken123456456789',
+      'device_id': '${AppConfig.apiKey}',
       'Accept-Language': 'ar',
-      'aws-key': awsKey,
-      'x_api_key': x_api_key,
-      'auth_endpoint': auth,
+      "pass": AppConfig.pass,
+      'x_api_key': AppConfig.xApiKey,
     };
 
     if (kDebugMode) {
@@ -62,7 +61,7 @@ class DioHelper {
 
   static updateHeader() {
     dio.options.headers = {
-      'Authorization': "Bearer ${jwtSecret}",
+      'Authorization': "Bearer {jwtSecret}",
       'Content-Type': 'application/json',
       'device_id': 'deviceToken123456456789',
       'Accept-Language': 'ar',
@@ -76,7 +75,7 @@ class DioHelper {
     agentData,
   }) async {
     final headers = {
-      'Authorization': "Bearer ${jwtSecret}",
+      'Authorization': "Bearer {jwtSecret}",
       'Content-Type': 'application/json',
       'x-fcm-token': 'xfcmToken123456456789',
       if (agentData != null) 'User-Agent': '$agentData/1.0',
@@ -98,7 +97,7 @@ class DioHelper {
     final options = Options(
       headers: {
         'accept': '*/*',
-        'Authorization': "Bearer ${jwtSecret}",
+        'Authorization': "Bearer {jwtSecret}",
         'Content-Type': 'application/json',
         'x-fcm-token': 'xfcmToken123456456789',
       },
@@ -130,7 +129,7 @@ class DioHelper {
   }) async {
     final options = Options(
       headers: {
-        'Authorization': "Bearer ${jwtSecret}",
+        'Authorization': "Bearer {jwtSecret}",
         'Content-Type': 'application/json',
         'x-fcm-token': 'xfcmToken123456456789',
       },
@@ -145,7 +144,7 @@ class DioHelper {
   }) async {
     final options = Options(
       headers: {
-        'Authorization': "Bearer ${jwtSecret}",
+        'Authorization': "Bearer {jwtSecret}",
         'Content-Type': 'application/json',
         'x-fcm-token': 'xfcmToken123456456789',
       },
@@ -169,7 +168,7 @@ class DioHelper {
       url,
       options: Options(
         headers: {
-          'Authorization': "Bearer ${jwtSecret}",
+          'Authorization': "Bearer {jwtSecret}",
           'Content-Type': 'application/json',
           'x-fcm-token': 'xfcmToken123456456789',
         },
@@ -185,7 +184,7 @@ class DioHelper {
       url,
       options: Options(
         headers: {
-          'Authorization': "Bearer ${jwtSecret}",
+          'Authorization': "Bearer {jwtSecret}",
           'Content-Type': 'application/json',
           'x-fcm-token': 'xfcmToken123456456789',
         },
@@ -200,7 +199,7 @@ class DioHelper {
   }) async {
     final options = Options(
       headers: {
-        'Authorization': "Bearer ${jwtSecret}",
+        'Authorization': "Bearer {jwtSecret}",
         'Content-Type': 'application/json',
         'x-fcm-token': 'xfcmToken123456456789',
       },
@@ -215,7 +214,7 @@ class DioHelper {
   }) async {
     final options = Options(
       headers: {
-        'Authorization': "Bearer ${jwtSecret}",
+        'Authorization': "Bearer {jwtSecret}",
         'Content-Type': 'application/json',
         'x-fcm-token': 'xfcmToken123456456789',
       },

@@ -6,6 +6,7 @@ import 'package:lessonsapp/Features/Home/Views/HomeScreen.dart';
 import 'package:lessonsapp/core/constants/AppAssets.dart';
 import 'package:lessonsapp/core/constants/TextStyles.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../../core/app_config.dart';
 import '../../../main.dart';
 import '../../../shared/CustomButton.dart';
 import '../../../shared/CustomTextField.dart';
@@ -25,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
-    saveToken('verySecretTokenPassIs12345678');
+    saveToken(AppConfig.pass);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       SecurityCheck.check(Get.context!);
     });
